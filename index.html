@@ -3,59 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KAT Empire: Mundo Abierto</title>
+    <title>KAT Empire Global</title>
     <style>
-        /* Estilo Centralizado - Todo dentro del juego */
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: 'Courier New', monospace; }
-        
-        #game-wrapper { position: relative; width: 100vw; height: 100vh; display: flex; flex-direction: column; }
-        
-        /* El Mapa como fondo total */
-        #viewport { flex-grow: 1; background: url('https://oldschool.runescape.wiki/images/World_map.png') center center; background-size: cover; position: relative; border: 4px solid #3e2723; }
-        
-        /* Stats integradas arriba */
-        .osrs-stats { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); border: 2px solid #ffd700; padding: 8px; color: #ffd700; font-size: 14px; font-weight: bold; pointer-events: none; }
-        
-        /* Consola de mensajes tipo OSRS */
-        #chat-box { height: 100px; background: #1a1a1a; color: #0f0; padding: 10px; font-size: 12px; overflow-y: auto; border-top: 3px solid #5d4037; }
-
-        /* Barra de herramientas inferior (Inventario/Acciones) */
-        .osrs-menu { height: 70px; background: #3e2723; display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 5px; border-top: 2px solid #ffd700; }
-        
-        .osrs-btn { background: #4e342e; border: 1px solid #ffd700; color: #ffd700; font-size: 10px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; text-transform: uppercase; }
-        .osrs-btn:active { background: #1a1a1a; transform: scale(0.95); }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #111; }
+        /* Contenedor centralizado */
+        #game-screen { 
+            width: 100vw; height: 100vh; 
+            display: flex; flex-direction: column;
+            background: #2e2417; /* Color tierra OSRS */
+            border: 5px solid #5d4037;
+            box-sizing: border-box;
+        }
+        /* Mapa integrado */
+        #map-area { 
+            flex: 1; 
+            position: relative;
+            background: url('https://raw.githubusercontent.com/runescape/oldschool-client/master/Images/Backgrounds/login.png') center;
+            background-size: cover;
+            box-shadow: inset 0 0 50px #000;
+        }
+        /* Stats dentro del mundo */
+        .hud-top {
+            position: absolute; top: 15px; left: 15px;
+            background: rgba(0,0,0,0.8); border: 2px solid #ffd700;
+            padding: 10px; color: #ffd700; font-family: 'Courier New', monospace;
+            font-size: 14px; box-shadow: 4px 4px 0 #000;
+        }
+        /* Barra de acciones integrada al juego */
+        .action-bar {
+            height: 80px; background: #3e2723;
+            display: flex; justify-content: space-around; align-items: center;
+            border-top: 3px solid #ffd700;
+        }
+        .game-btn {
+            width: 22%; height: 50px; background: #4e342e;
+            border: 2px solid #ffd700; color: #ffd700;
+            font-family: 'Courier New', monospace; font-weight: bold;
+            font-size: 11px; cursor: pointer;
+        }
+        .game-btn:active { background: #000; }
     </style>
 </head>
 <body>
 
-    <div id="game-wrapper">
-        <div id="viewport">
-            <div class="osrs-stats">
+    <div id="game-screen">
+        <div id="map-area">
+            <div class="hud-top">
                 💰 KAT: 148,000<br>
-                ⚔️ NIVEL: 15
+                ⚔️ LVL: 15
             </div>
         </div>
 
-        <div id="chat-box" id="log">
-            - Bienvenido a KAT Empire Global.<br>
-            - Haz clic en el mapa para explorar territorios...
-        </div>
-
-        <div class="osrs-menu">
-            <button class="osrs-btn" onclick="msg('⚔️ Iniciando combate...')">⚔️ Combate</button>
-            <button class="osrs-btn" onclick="msg('⚒️ Abriendo la Forja...')">⚒️ Forja</button>
-            <button class="osrs-btn" onclick="msg('🏴‍☠️ Mercado Negro...')">🏴‍☠️ Mercado</button>
-            <button class="osrs-btn" onclick="msg('💳 Menú de Retiro...')">💳 Retiro</button>
+        <div class="action-bar">
+            <button class="game-btn">⚔️ BATALLA</button>
+            <button class="game-btn">⚒️ FORJA</button>
+            <button class="game-btn">🏴‍☠️ TIENDA</button>
+            <button class="game-btn">💰 RETIRO</button>
         </div>
     </div>
-
-    <script>
-        function msg(texto) {
-            const chat = document.getElementById('chat-box');
-            chat.innerHTML += `<br>- ${texto}`;
-            chat.scrollTop = chat.scrollHeight;
-        }
-    </script>
 
 </body>
 </html>
